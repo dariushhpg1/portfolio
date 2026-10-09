@@ -12,7 +12,7 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/dariushhpg1/',
   github: 'https://github.com/dariushhpg1',
   resume: 'Darius-H-Resume-2026.pdf',
-  avatar: 'darius-profile.jpg',
+  avatar: 'images/profile-avatar.png',
   eyebrow: 'DESIGN SYSTEMS / PRODUCT THINKING / CRAFT',
   headline: 'Designing systems that help',
   headlineAccent: 'great products scale.',
@@ -41,8 +41,7 @@ export type Project = {
   stat: string;
   statLabel: string;
   tags: string[];
-  artwork: 'blu' | 'icons' | 'khooger';
-  coverImage?: string;
+  coverImage: string;
   badge?: string;
   links: ProjectLink[];
   pendingLink?: string;
@@ -56,8 +55,8 @@ export const projects: Project[] = [
     description: 'My most important body of work over the past five years: leading Coin, blu Bank’s scalable design system, and building blubank.design as the documentation hub that helps design, product, and engineering teams work from the same source of truth.',
     contribution: 'Design system strategy, multi-brand theming, design tokens, component libraries, documentation architecture, Figma/WordPress tooling, and Git-based asset delivery.',
     stat: '200+', statLabel: 'components in Coin',
-    tags: ['Featured work', 'Design systems', 'Documentation', 'DesignOps', 'Multi-brand'], artwork: 'blu',
-    coverImage: 'blu-design-cover.png',
+    tags: ['Featured work', 'Design systems', 'Documentation', 'DesignOps', 'Multi-brand'],
+    coverImage: 'images/work-blu.png',
     badge: 'PRIMARY FOCUS · LAST 5 YEARS',
     links: [
       { label: 'Explore blubank.design', href: 'https://blubank.design/', kind: 'primary' },
@@ -71,7 +70,7 @@ export const projects: Project[] = [
     description: 'A carefully crafted, open-source icon library with 2,400+ icons across eight styles — designed to be useful, consistent, and easy to adapt.',
     contribution: 'Icon design, visual consistency, asset organization, and publishing for the design community.',
     stat: '2,400+', statLabel: 'icons · 8 styles',
-    tags: ['Icon design', 'Figma', 'Open source'], artwork: 'icons',
+    tags: ['Icon design', 'Figma', 'Open source'], coverImage: 'images/work-iconamoon.png',
     links: [
       { label: 'Get it on Figma', href: 'https://www.figma.com/community/file/1014143897459418663/iconamoon-1-1-2400-icons-8-styles', kind: 'primary' },
       { label: 'View on GitHub', href: 'https://github.com/dariushhpg1/IconaMoon' },
@@ -84,7 +83,7 @@ export const projects: Project[] = [
     description: 'Led a complete redesign of Khooger’s e-commerce experience, from the product interface and 400+ screens to a more cohesive visual system.',
     contribution: 'End-to-end UX/UI, design system, research, visual identity, and growing a three-person design team.',
     stat: '8×', statLabel: 'user growth over 3 years',
-    tags: ['E-commerce', 'UX strategy', 'Leadership'], artwork: 'khooger',
+    tags: ['E-commerce', 'UX strategy', 'Leadership'], coverImage: 'images/work-khooger.png',
     links: [], pendingLink: 'Full Khooger work link — coming soon',
   },
 ];
@@ -111,14 +110,14 @@ export const articles = [
     title: 'From design to development: optimizing asset delivery with Git',
     excerpt: 'A practical workflow for keeping design assets organized, consistent, and in sync with engineering.',
     href: 'https://medium.com/design-bootcamp/from-design-to-development-optimizing-asset-delivery-with-git-adfd54a18354',
-    image: 'article-git-cover.svg',
+    image: 'images/article-git-cover.svg',
   },
   {
     index: '02', category: 'ICON DESIGN · 7 MIN READ', date: 'MAY 4, 2024',
     title: 'Design and deliver icons to +12m users',
     excerpt: 'How we built a distinctive, readable, and scalable icon language for blu Bank.',
     href: 'https://medium.com/design-bootcamp/design-and-deliver-icons-to-7m-users-d1a559b7d829',
-    image: 'article-icons-cover.svg',
+    image: 'images/article-icons-cover.svg',
   },
 ];
 

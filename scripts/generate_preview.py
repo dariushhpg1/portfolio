@@ -15,7 +15,6 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 root = Path(__file__).resolve().parents[1]
 data_text = (root / 'src/data/portfolio.ts').read_text()
-art_text = (root / 'src/components/ProjectArtwork.astro').read_text()
 
 def parse_assignment(text, name):
     match = re.search(r'\b(?:const|export const)\s+' + re.escape(name) + r'\s*(?::\s*[^=]+)?\s*=\s*', text)
@@ -51,8 +50,9 @@ for project in context['projects']:
 for article in context['articles']:
     if article.get('image') and not str(article['image']).startswith('http'):
         article['imageDataUri'] = to_data_uri(root / 'public' / article['image'])
-context['iconPaths'] = parse_assignment(art_text, 'iconPaths')
 css = (root / 'src/styles/global.css').read_text().replace('@import "tailwindcss";', '')
+context['faviconDataUri'] = to_data_uri(root/'public/images/favicon.png')
+context['bluLogoDataUri'] = to_data_uri(root/'public/images/blu-bank-logo.png')
 context['css'] = css
 engine = Environment(loader=FileSystemLoader(root / 'scripts'), autoescape=select_autoescape(['html']))
 html = engine.get_template('preview_template.html').render(**context)
