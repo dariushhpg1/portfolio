@@ -1,0 +1,57 @@
+---
+import '../styles/global.css';
+import { profile } from '../data/portfolio';
+import { url } from '../utils/paths';
+const title = `${profile.name} — Product Design Lead & Design Systems`;
+const description = 'Portfolio of Darius H. — product design leadership, scalable design systems, Coin at blu Bank, IconaMoon, Khooger and writing.';
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+---
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f6f2" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="canonical" href={canonical.toString()} />
+    <link rel="icon" href={url('favicon.svg')} type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <slot />
+    <script>
+      const progress = document.querySelector<HTMLElement>('.scroll-progress');
+      const navItems = [...document.querySelectorAll<HTMLAnchorElement>('.desktop-nav a')];
+      const sections = [...document.querySelectorAll<HTMLElement>('main section[id]')];
+      const updateProgress = () => {
+        if (!progress) return;
+        const height = document.documentElement.scrollHeight - innerHeight;
+        progress.style.transform = `scaleX(${height > 0 ? scrollY / height : 0})`;
+      };
+      updateProgress();
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            navItems.forEach(link => {
+              const active = link.hash === `#${entry.target.id}`;
+              link.classList.toggle('active', active);
+              if (active) link.setAttribute('aria-current', 'location');
+              else link.removeAttribute('aria-current');
+            });
+          });
+        }, { rootMargin: '-23% 0px -65% 0px' });
+        sections.forEach(section => observer.observe(section));
+      }
+    </script>
+  </body>
+</html>
