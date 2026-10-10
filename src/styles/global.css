@@ -112,3 +112,95 @@
   .capability{padding:22px 18px!important}
   .article-body{padding:22px}
 }
+
+
+/* V5: Links in Selected Work should look like real, accessible buttons */
+.work-detail-bottom {
+  gap: 16px;
+  align-items: flex-end;
+}
+.work-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 9px;
+  text-align: center;
+  max-width: min(100%, 275px);
+  flex-shrink: 0;
+}
+.work-link,
+.work-link-primary {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 12px 18px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--font);
+  font-size: 0.875rem !important;
+  line-height: 1.35 !important;
+  font-weight: 650;
+  color: #26303b;
+  background: #fff;
+  border: 1.5px solid #ccd1d8;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none !important;
+  box-shadow: 0 2px 6px rgba(18, 24, 36, .05);
+  transition: background-color .2s ease, color .2s ease,
+              border-color .2s ease, box-shadow .2s ease,
+              transform .2s ease;
+}
+.work-link-primary {
+  background: #242a34;
+  color: white;
+  border-color: #242a34;
+  box-shadow: 0 5px 12px rgba(18, 24, 36, .16);
+}
+.work-link:hover {
+  color: #1f2937;
+  background: #f0f2f6;
+  border-color: #8c94a0;
+  box-shadow: 0 7px 16px rgba(18, 24, 36, .12);
+  transform: translateY(-2px);
+}
+.work-link-primary:hover {
+  color: white;
+  background: #4e48a3;
+  border-color: #4e48a3;
+}
+.work-link:focus-visible {
+  outline: 3px solid #8379ed;
+  outline-offset: 3px;
+}
+.work-link:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(18,24,36,.14);
+}
+.project-company-logo {
+  border-radius: 50%;
+}
+@media (max-width: 1180px) {
+  .work-detail-bottom { flex-wrap: wrap; }
+  .work-links { align-items: flex-start; text-align: left; }
+}
+@media (max-width: 600px) {
+  .work-detail-bottom {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+  .work-links {
+    align-items: stretch;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+  }
+  .work-link,
+  .work-link-primary { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .work-link { transition: none; }
+}

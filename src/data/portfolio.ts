@@ -111,7 +111,9 @@ export const projects: Project[] = [
     contribution: 'End-to-end UX/UI, design system, research, visual identity, and growing a three-person design team.',
     stat: '8×', statLabel: 'user growth over 3 years',
     tags: ['E-commerce', 'UX strategy', 'Leadership'], coverImage: 'images/work-khooger.png',
-    links: [], pendingLink: 'Full Khooger work link — coming soon',
+    links: [
+      { label: 'View Khooger on Behance', href: 'https://www.behance.net/gallery/126697295/Visual-and-Product-Design-for-Khoogercom', kind: 'primary' },
+    ],
   },
 ];
 

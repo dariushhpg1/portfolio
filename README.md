@@ -26,7 +26,7 @@ Work covers use **bare `<img>` elements, with no HTML captions, stickers, or CSS
 - **For the header avatar:** replace `profile-avatar.png` with a tightly cropped, centered headshot. CSS clips the image to a circle.
 - **For the browser tab:** replace `favicon.png` if the portrait changes. Browsers may cache favicons; refresh or open a private window to see a new one.
 - **For the blu Bank logo:** `blu-bank-logo.png` is currently an **editable placeholder**, not an official brand asset. Replace it with your preferred original logo.
-- **For new case studies:** the Khooger link is deliberately a non-clickable "coming soon" label until you add its URL.
+- **Khooger case study:** the Work card links directly to your Behance portfolio project.
 - The files under `public/images/` are independent. Replacing any image does not require touching Astro components or CSS.
 
 ## Edit content
@@ -55,3 +55,10 @@ npm run build
 `preview.html` is a standalone static visual reference; the site published by GitHub Actions is built from the source under `src/`. To regenerate the static preview after **content** changes, run `python scripts/generate_preview.py` (requires Python, `jinja2`, `json5`).
 
 Inter loads via Google Fonts when online, with system-font fallback if that service is blocked.
+
+## Version 5 updates
+
+- Replaced Khooger and IconaMoon covers with the latest supplied files, without changing paths.
+- Replaced `public/images/blu-bank-logo.png` with the supplied blu Bank logo (shown alongside all blu projects).
+- Linked the Khooger work card to its Behance case study.
+- Updated all Work links to high-contrast, pill-shaped buttons with hover and keyboard focus styling.

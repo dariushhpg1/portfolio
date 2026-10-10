@@ -37,7 +37,7 @@ const resumeLink = url(profile.resume);
             <div class="work-detail">
               <div class="work-meta"><span>{project.index} / {project.category}</span><span>{project.period}</span></div>
               {project.badge && <div class="featured-chip">{project.badge}</div>}
-              {project.id === 'blu' ? (
+              {project.company === 'blu Bank' ? (
                 <div class="project-company project-company-badge"><img class="project-company-logo" src={url('images/blu-bank-logo.png')} alt="blu Bank logo" /><span>{project.company}</span></div>
               ) : (
                 <p class="project-company">{project.company}</p>
