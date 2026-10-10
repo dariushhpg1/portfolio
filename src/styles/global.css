@@ -42,3 +42,73 @@
 .button{gap:14px}.header-contact{gap:0}.text-arrow-link{gap:0}.work-links{gap:12px}
 @media(max-width:860px){.work-artwork,.work-cover-image{min-height:430px}}
 @media(max-width:600px){.brand-avatar{width:42px;height:42px;flex-basis:42px}.work-artwork,.work-cover-image{min-height:325px}.featured-chip{margin-top:14px;font-size:9px;padding:7px 10px}.project-company-badge{padding:10px 12px}.project-company-logo{width:28px;height:28px;flex-basis:28px}}
+
+
+/* October 2026 refinement: calmer typography, rounded controls, simpler cards */
+.button,.header-contact{border-radius:999px!important}
+.button{gap:10px;padding:18px 22px}
+.button-quiet{padding-left:22px}
+.brand-name small,.eyebrow,.hero-lower,.showcase-top,.showcase-panel-top,.showcase-panel-bottom,.showcase-bottom,.section-topline,.approach-bottom,.about-graphic-top,.about-graphic-foot,.about-content .kicker,.skill-group>div,.work-meta,.featured-chip,.project-company,.work-tags span,.article-meta,.contact-topline,.contact-eyebrow,.timeline-education span{letter-spacing:.02em!important;text-transform:none!important}
+.project-company{text-transform:none!important}
+.work-meta,.article-meta,.section-topline,.contact-topline,.eyebrow,.hero-lower,.approach-bottom,.contact-eyebrow,.timeline-education span,.about-content .kicker,.skill-group>div{font-size:.875rem!important;line-height:1.5}
+.showcase-top,.showcase-panel-top,.showcase-panel-bottom,.showcase-bottom,.about-graphic-top,.about-graphic-foot{font-size:.8125rem!important;line-height:1.45}
+
+/* Remove the highlight strip after hero */
+.metrics-wrap{display:none!important}
+.hero{padding-bottom:72px}
+
+/* Selected work: keep type scale tight and remove internal dividers */
+.work-card{align-items:stretch}
+.work-detail{padding:28px clamp(20px,3vw,36px) 24px}
+.work-meta{color:#7f868b}
+.featured-chip{margin-top:16px;padding:8px 12px;font-size:.875rem!important;font-weight:600;border:none;background:#eef2ff;color:#3146b9}
+.project-company,.project-company-badge span{font-size:1rem!important;font-weight:600;color:#5e56bf;margin:26px 0 10px}
+.project-company-badge{padding:10px 12px;border:none;background:#f4f6fd}
+.work-detail h3{font-size:clamp(1.85rem,2.3vw,2.35rem)!important;line-height:1.14;margin:0 0 14px;max-width:32rem}
+.work-summary,.work-contribution{font-size:1rem!important;line-height:1.7;color:#5f6971}
+.work-summary{margin:0 0 10px}
+.work-contribution{color:#767e85}
+.work-tags{margin-top:18px;gap:10px}
+.work-tags span{border:none!important;background:#f1f3ef;color:#667077;padding:8px 12px;font-size:.875rem!important;font-weight:500}
+.work-detail-bottom{padding-top:20px;border-top:none!important;align-items:flex-start}
+.work-outcome strong{font-size:clamp(1.85rem,2.2vw,2.35rem)!important;line-height:1.1}
+.work-outcome span,.work-link,.pending-link{font-size:.875rem!important;line-height:1.6}
+.work-links{gap:8px;align-items:flex-start;text-align:left;max-width:none}
+.work-link{text-decoration:none!important;font-weight:600;color:#3c4351}
+.work-link:hover{color:#7368d7}
+.pending-link{color:#8b9196}
+
+/* Simpler section cards */
+.capabilities-grid{border-block:none!important;gap:16px}
+.capability{border:none!important;border-radius:18px;background:rgba(255,255,255,.04);padding:28px 24px 26px!important;min-height:0}
+.capability:first-child{padding-left:24px!important}
+.capability-index,.capability small{font-size:.875rem!important;letter-spacing:.02em!important}
+.capability h3{font-size:1.5rem!important;margin:20px 0 12px}
+.capability p{font-size:1rem!important;line-height:1.7}
+.capability small{padding-top:18px}
+
+.timeline-education{border-top:none!important;padding-top:8px}
+.article-card{border-color:#e3e5e0}
+.article-art{background:#edf0eb}
+.article-body{padding:28px 28px 30px}
+.article-meta{font-size:.875rem!important}
+.article-body h3{font-size:clamp(1.55rem,1.8vw,1.9rem)!important;line-height:1.2;margin:18px 0 10px}
+.article-body p{font-size:1rem!important;line-height:1.7;min-height:0}
+.article-cta{padding-top:18px;margin-top:20px;border-top:none!important;font-size:.875rem!important;color:#3c4351}
+
+/* Keep mobile calm */
+@media (max-width:860px){
+  .capabilities-grid{grid-template-columns:1fr 1fr!important}
+  .work-detail h3{font-size:2rem!important}
+}
+@media (max-width:600px){
+  .button,.header-contact{border-radius:999px!important}
+  .button{padding:15px 18px;font-size:.875rem!important}
+  .section-topline,.work-meta,.article-meta,.contact-topline,.contact-eyebrow,.about-content .kicker,.skill-group>div,.timeline-education span{font-size:.8125rem!important}
+  .work-detail{padding:20px 14px 18px}
+  .work-detail h3,.work-outcome strong{font-size:1.8rem!important}
+  .work-summary,.work-contribution,.article-body p,.capability p{font-size:.95rem!important}
+  .capabilities-grid{grid-template-columns:1fr!important}
+  .capability{padding:22px 18px!important}
+  .article-body{padding:22px}
+}
