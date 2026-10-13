@@ -1,63 +1,59 @@
-# Darius H. — Minimal Portfolio
+# Darius H. — Minimal portfolio (complete Astro project)
 
-A single-page English portfolio built with **Astro 7 + Tailwind 4**, intended for GitHub Pages. The visual approach is deliberately minimal: typography, space, understated blue accents, and five visual case studies.
+A single-page English portfolio built using **Astro**, the **Tailwind CSS Vite integration**, and a custom minimal stylesheet. Configured for **GitHub Pages**, including automatic deployment via `.github/workflows/deploy.yml`.
 
-## What changed in V7
+## Publish on GitHub Pages
 
-- New personal photo in both the circular navigation avatar and the circular, transparent favicon
-- Removed the decorative hero showcase, decorative About graphic, and career-metric strip
-- Reworked all project cards with much shorter text and a clear visual hierarchy
-- Every project image and article thumbnail is displayed inside a **4:3 landscape frame**
-- The source images are never cropped or edited on disk: **CSS `object-fit: cover`** crops visually where the source aspect ratio differs
-- Reduced site palette to near-white, charcoal, muted grey, and a subdued blue
-- Improved blu Bank pills (circular logo slot, fully rounded corners, even vertical and left padding)
-- Changed IconaMoon's main metric to **135K+ users**, as stated in the October 2026 CV
-- Kept all project links, Medium articles, work experience (including Podro), and contact information
+1. Extract this ZIP, then upload the **contents** to the root of your `dariushhpg1/portfolio` repository (including the hidden `.github` folder).
+2. Commit to the `main` branch.
+3. Under **Settings → Pages → Build and deployment**, set Source to **GitHub Actions**.
+4. Check Actions for a successful build and deployment, then visit `https://dariushhpg1.github.io/portfolio/`.
 
-## Replace pictures
+You do not need to upload the ZIP itself to GitHub.
 
-All the assets are inside `public/images`. Replacing an image with another image of the same name and extension will automatically update the website after your next GitHub commit.
+## Run locally
 
-| File | Purpose |
-| --- | --- |
-| `profile-avatar.png` | Circle in the site navigation |
-| `favicon.png` | Round browser tab icon, currently derived from your new portrait |
-| `blu-bank-logo.png` | blu Bank logo in the small pill on all three blu projects |
-| `work-blu.png` | Coin and blubank.design cover |
-| `work-blu-illustrations.png` | blu Illustrations cover |
-| `work-blu-icons.png` | blu Icons cover |
-| `work-iconamoon.png` | IconaMoon cover |
-| `work-khooger.png` | Khooger cover |
-| `article-git-cover.png` | Medium article about Git workflow |
-| `article-icons-cover.png` | Medium article about icon delivery |
-
-**Framing:** project cards and article covers use `aspect-ratio: 4/3; object-fit: cover; object-position: center;`. To show an entire image without cropping, change `object-fit: cover` to `contain` in `src/styles/global.css` (note this will add empty space within some frames).
-
-## Edit content
-
-Text, project sequence, URLs, metrics, and work history are in `src/data/portfolio.ts`. Images are referenced there by file path. The site remains **one scrolling page** at `src/pages/index.astro`.
-
-The downloadable PDF CV is at `public/Darius-H-Resume-2026.pdf`. The `preview.html` in this ZIP is a self-contained browser preview; GitHub Pages builds the actual site from the files in `src/`.
-
-## Update the live GitHub Pages website
-
-1. Unzip this file and upload the **contents** to the root of the existing `dariushhpg1/portfolio` repository, on `main`, replacing old files. Include hidden `.github/workflows/deploy.yml`.
-2. Click **Commit changes**. The configured GitHub Actions workflow automatically rebuilds and deploys the site.
-3. Check the deployment status at <https://github.com/dariushhpg1/portfolio/actions>. The site is at <https://dariushhpg1.github.io/portfolio/>.
-
-Leave **Settings → Pages → Build and deployment → Source** set to **GitHub Actions**.
-
-## Local development
-
-Use Node 24 or newer to match the GitHub Actions workflow:
-
-```bash
+```sh
 npm install
 npm run dev
+```
+
+Production build:
+
+```sh
 npm run check
 npm run build
 ```
 
-A standalone preview can be regenerated with `python3 scripts/generate_preview.py` (`jinja2` and `json5` packages required). Inter loads from Google Fonts with system-font fallback.
+## Edit the portfolio
 
-**Build note:** Visual QA was performed with the browser preview at desktop and mobile sizes. The Astro `npm run build` requires installation of dependencies and could not be completed in the current offline authoring environment; the GitHub Actions workflow performs that build on commit.
+- Page content and links: `src/pages/index.astro`
+- Fonts, colors and layout: `src/styles/global.css`
+- Image files (replace them with the **same filename and file extension**): `public/images/`
+- CV: `public/Darius-H-Resume-2026.pdf`
+- Favicon image: `public/images/favicon.png`
+- Header portrait: `public/images/profile-avatar.png`
+
+Key images:
+
+| Filename | Usage |
+|---|---|
+| `work-blu.png` | Coin / blubank.design work |
+| `work-about-coin.png` | One Design System To Rule Them All presentation |
+| `work-blu-illustrations.png` | blu Illustrations |
+| `work-blu-icons.png` | blu Icons |
+| `work-iconamoon.png` | IconaMoon |
+| `work-khooger.png` | Khooger |
+| `article-git-cover.png` | Git workflow article |
+| `article-icons-cover.png` | Icon-design article |
+| `blu-bank-logo.png` | blu Bank company pill logo |
+
+All project and writing cards use 4:3 landscape image frames with CSS `object-fit:cover`. Their source files are not cropped or altered by the site. Some image edges may be hidden on certain screen sizes.
+
+Presentation link: [One Design System To Rule Them All](https://www.figma.com/proto/dib2nAxOTm9aRAjpTWQvql/About-Coin?node-id=1-72443&viewport=236%2C259%2C0.14&t=spF1rJiazW7Tci5X-1&scaling=contain&content-scaling=fixed&starting-point-node-id=1%3A72443&page-id=0%3A1).
+
+## Notes
+
+- `preview.html` is a standalone visual preview, not the source for deployment. GitHub Pages builds the Astro source under `src/`.
+- The repository name is detected automatically in GitHub Actions and Astro's `base` path is set accordingly.
+- `public/.nojekyll` is included to prevent Jekyll processing.
