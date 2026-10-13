@@ -38,7 +38,7 @@ def parse_assignment(text, name):
                 return json5.loads(text[at:pos+1])
     raise ValueError('Unclosed expression: ' + name)
 
-names = ('profile', 'highlights', 'projects', 'capabilities', 'experience', 'articles', 'skillGroups')
+names = ('profile', 'projects', 'capabilities', 'experience', 'articles', 'skillGroups')
 context = {name: parse_assignment(data_text, name) for name in names}
 # Inline local images so preview.html and screenshots work without a web server
 profile = context['profile']

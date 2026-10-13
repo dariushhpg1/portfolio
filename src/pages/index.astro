@@ -10,76 +10,73 @@ const resumeLink = url(profile.resume);
   <SiteHeader />
   <main id="main">
     <section class="hero shell" id="top" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <div class="eyebrow"><span class="eyebrow-spark">✳</span> {profile.eyebrow}</div>
-        <h1 id="hero-title">{profile.headline}<br/><em>{profile.headlineAccent}</em></h1>
-        <p class="hero-intro">{profile.introduction}</p>
-        <div class="hero-actions"><a class="button button-dark" href="#work">Explore selected work</a><a class="button button-quiet" href="#about">A little about me</a></div>
-        <div class="hero-lower"><span>Scroll to discover</span></div>
-      </div>
-      <div class="hero-showcase" role="img" aria-label="Abstract composition of design system cards and tokens">
-        <div class="hero-showcase-grid"></div><div class="showcase-top"><span><i></i> Darius / Design practice</span><span>Est. 2016</span></div>
-        <div class="orbit orbit-outer"></div><div class="orbit orbit-inner"></div>
-        <div class="showcase-panel"><div class="showcase-panel-top"><span>✳</span><span>Design is a system</span></div><div class="showcase-panel-title">Details<br/>make the<br/><em>difference.</em></div><div class="showcase-panel-bottom"><span>Research</span><span>Craft</span><span>Scale</span></div></div>
-        <div class="showcase-chip chip-top"><span class="chip-star">✶</span> Product thinking</div>
-        <div class="showcase-chip chip-bottom"><span class="chip-circle"></span> Made to scale</div>
-        <span class="showcase-bottom">From the pixel to the platform.</span>
+      <span class="eyebrow">{profile.eyebrow}</span>
+      <h1 id="hero-title">{profile.headline}<br/><span>{profile.headlineAccent}</span></h1>
+      <div class="hero-bottom">
+        <p>{profile.introduction}</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#work">Selected work</a>
+          <a class="button button-secondary" href="#about">About me</a>
+        </div>
       </div>
     </section>
 
-    <section class="section section-work shell" id="work" aria-labelledby="work-title">
-      <div class="section-topline"><span>01 / Selected work</span><span>Real problems. Thoughtful solutions.</span></div>
-      <div class="section-heading"><h2 id="work-title">Work that <em>works.</em></h2><p>A few projects that reflect how I think: balancing real user needs, precise visual decisions, and systems built for the long run.</p></div>
+    <section class="section shell work-section" id="work" aria-labelledby="work-title">
+      <div class="section-header"><span class="section-index">01 / Work</span><h2 id="work-title">Selected work<span class="period">.</span></h2></div>
       <div class="work-list">
-        {projects.map((project, i) => (
-          <article class:list={['work-card', { 'work-card-reverse': i % 2 === 1, 'work-card-featured': project.id === 'blu' }]} id={project.id}>
-            <div class="work-artwork"><img class="work-cover-image" src={url(project.coverImage)} alt={`${project.company} project cover`} loading="lazy" /></div>
-            <div class="work-detail">
+        {projects.map((project) => (
+          <article class:list={['work-card', {'work-card-featured': project.id === 'blu'}]} id={project.id}>
+            <div class="work-media"><img src={url(project.coverImage)} alt={`${project.title} visual cover`} loading="lazy" decoding="async" /></div>
+            <div class="work-content">
               <div class="work-meta"><span>{project.index} / {project.category}</span><span>{project.period}</span></div>
-              {project.badge && <div class="featured-chip">{project.badge}</div>}
               {project.company === 'blu Bank' ? (
-                <div class="project-company project-company-badge"><img class="project-company-logo" src={url('images/blu-bank-logo.png')} alt="blu Bank logo" /><span>{project.company}</span></div>
-              ) : (
-                <p class="project-company">{project.company}</p>
-              )}
+                <div class="company-pill"><span class="company-logo-wrap"><img src={url('images/blu-bank-logo.png')} alt="" /></span><span>blu Bank</span></div>
+              ) : <span class="company-name">{project.company}</span>}
               <h3>{project.title}</h3>
-              <p class="work-summary">{project.description}</p>
-              <p class="work-contribution">{project.contribution}</p>
-              <div class="work-tags">{project.tags.map(tag => <span>{tag}</span>)}</div>
-              <div class="work-detail-bottom"><div class="work-outcome"><strong>{project.stat}</strong><span>{project.statLabel}</span></div><div class="work-links">{project.links.map(link => <a class:list={['work-link', {'work-link-primary': link.kind === 'primary'}]} href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>)}{project.pendingLink && <span class="pending-link" aria-label="Link not available yet">{project.pendingLink}</span>}</div></div>
+              <p class="work-description">{project.description}</p>
+              {project.stat && <div class="work-stat"><strong>{project.stat}</strong><span>{project.statLabel}</span></div>}
+              <div class="work-actions">{project.links.map((link) => <a class:list={['button','work-button',link.kind === 'primary' ? 'button-primary' : 'button-secondary']} href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>)}</div>
             </div>
           </article>
         ))}
       </div>
     </section>
 
-    <section class="section approach-section" id="approach" aria-labelledby="approach-title"><div class="shell">
-      <div class="section-topline light-line"><span>02 / How I work</span><span>Strategy with an eye for detail</span></div>
-      <div class="approach-heading"><h2 id="approach-title">Design is a team sport.<br/><em>Systems make it scale.</em></h2><p>The best work happens when strong ideas become repeatable practices — without losing the human touch.</p></div>
-      <div class="capabilities-grid">{capabilities.map(cap => <div class="capability"><span class="capability-index">/{cap.id}</span><h3>{cap.title}</h3><p>{cap.description}</p><small>{cap.tags}</small></div>)}</div>
-      <div class="approach-bottom"><span>Clarity / Consistency / Momentum</span><span>✳</span></div>
-    </div></section>
-
-    <section class="section about-section shell" id="about" aria-labelledby="about-title">
-      <div class="section-topline"><span>03 / A little about me</span><span>Beyond the canvas</span></div>
-      <div class="about-grid"><div class="about-graphic"><div class="about-asterisk">✳</div><div class="about-graphic-top">Always curious / Always building</div><div class="about-graphic-caption">Good systems are invisible.<br/>Their impact isn’t.</div><div class="about-graphic-foot">Design thinking. Engineering empathy.</div></div>
-        <div class="about-content"><div class="kicker">Hello again, I’m Darius.</div><h2 id="about-title">Curious by nature.<br/><em>Systematic by design.</em></h2><p>{profile.about}</p><p>Over the past decade, I’ve worked across fintech, e-commerce, apps, games, and open source. My favorite challenge is bringing structure to complexity without taking the personality out of the product.</p><a class="text-arrow-link" href={resumeLink} target="_blank" rel="noopener noreferrer">Read my full résumé</a></div>
+    <section class="section approach-section" id="approach" aria-labelledby="approach-title">
+      <div class="shell">
+        <div class="section-header"><span class="section-index">02 / Approach</span><h2 id="approach-title">How I work<span class="period">.</span></h2></div>
+        <div class="capabilities-grid">{capabilities.map((cap) => <div class="capability"><span class="capability-index">{cap.id}</span><h3>{cap.title}</h3><p>{cap.description}</p></div>)}</div>
       </div>
-      <div class="skill-groups">{skillGroups.map(group => <div class="skill-group"><div>{group.label}</div><p>{group.skills.join(' · ')}</p></div>)}</div>
     </section>
 
-    <section class="section experience-section shell" id="experience" aria-labelledby="experience-title">
-      <div class="section-topline"><span>04 / The journey</span><span>Experience & education</span></div>
-      <div class="experience-grid"><div class="experience-intro"><h2 id="experience-title">A decade of<br/><em>making things better.</em></h2><p>Building teams, products, and shared design foundations — one thoughtful iteration at a time.</p><a class="text-arrow-link" href={resumeLink} target="_blank" rel="noopener noreferrer">Download résumé (PDF)</a></div><div class="timeline">{experience.map((item) => <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-main"><div class="timeline-top"><h3>{item.company}</h3><span>{item.period}</span></div><strong>{item.role}</strong><p>{item.detail}</p></div></div>)}<div class="timeline-education"><span>Education</span><strong>Computer Engineering</strong><p>Shahid Bahonar University of Kerman · 2015–2018</p></div></div></div>
+    <section class="section shell about-section" id="about" aria-labelledby="about-title">
+      <div class="section-header"><span class="section-index">03 / About</span><h2 id="about-title">A little about me<span class="period">.</span></h2></div>
+      <div class="about-grid">
+        <p class="about-lead">Good design brings structure to complexity.</p>
+        <div class="about-content"><p>{profile.about}</p><a class="text-link" href={resumeLink} target="_blank" rel="noopener noreferrer">View résumé</a></div>
+      </div>
+      <div class="skill-groups">{skillGroups.map(group => <div class="skill-group"><strong>{group.label}</strong><p>{group.skills.join(' · ')}</p></div>)}</div>
     </section>
 
-    <section class="section writing-section" id="writing" aria-labelledby="writing-title"><div class="shell">
-      <div class="section-topline"><span>05 / Notes from the work</span><span>Ideas worth sharing</span></div>
-      <div class="section-heading"><h2 id="writing-title">Thinking <em>out loud.</em></h2><p>Stories and practical lessons from the messy, interesting space between design and development.</p></div>
-      <div class="article-grid">{articles.map((article) => <a class="article-card" href={article.href} target="_blank" rel="noopener noreferrer"><div class="article-art" aria-hidden="true"><img src={article.image.startsWith('http') ? article.image : url(article.image)} alt="" loading="lazy" /></div><div class="article-body"><div class="article-meta"><span>{article.category}</span><span>{article.date}</span></div><h3>{article.title}</h3><p>{article.excerpt}</p><span class="article-cta">Read on Medium</span></div></a>)}</div>
+    <section class="section experience-section" id="experience" aria-labelledby="experience-title">
+      <div class="shell">
+        <div class="section-header"><span class="section-index">04 / Experience</span><h2 id="experience-title">Experience<span class="period">.</span></h2></div>
+        <div class="experience-list">{experience.map((item) => <div class="experience-row"><div><h3>{item.company}</h3><p>{item.role}</p></div><span>{item.period}</span></div>)}</div>
+        <div class="education-row"><span>Education</span><p>Computer Engineering · Shahid Bahonar University of Kerman · 2015–2018</p></div>
+      </div>
+    </section>
+
+    <section class="section shell writing-section" id="writing" aria-labelledby="writing-title">
+      <div class="section-header"><span class="section-index">05 / Writing</span><h2 id="writing-title">Selected writing<span class="period">.</span></h2></div>
+      <div class="article-grid">{articles.map((article) => <a class="article-card" href={article.href} target="_blank" rel="noopener noreferrer"><img src={url(article.image)} alt="" loading="lazy" decoding="async"/><div class="article-content"><span>{article.category}</span><h3>{article.title}</h3><span class="article-link">Read article</span></div></a>)}</div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="shell">
+      <span class="section-index">06 / Contact</span>
+      <h2 id="contact-title">Let’s make<br/>something meaningful.</h2>
+      <a class="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>
+      <div class="contact-links"><a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub</a><a href={resumeLink} target="_blank" rel="noopener noreferrer">Résumé</a></div>
     </div></section>
-
-    <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="shell contact-inner"><div class="contact-topline"><span>06 / What’s next?</span><span>Let’s make something meaningful.</span></div><p class="contact-eyebrow">Have an interesting challenge in mind?</p><h2 id="contact-title">Let’s build<br/><em>something good.</em></h2><div class="contact-bottom"><a class="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a><div class="contact-social"><a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn </a><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub </a><a href={resumeLink} target="_blank" rel="noopener noreferrer">Résumé </a></div></div></div></section>
   </main>
   <SiteFooter />
 </BaseLayout>

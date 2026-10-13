@@ -1,20 +1,18 @@
 ---
 import { profile } from '../data/portfolio';
 import { url } from '../utils/paths';
-const avatar = url(profile.avatar);
 ---
 <header class="site-header" id="site-header">
   <div class="shell header-inner">
-    <a class="brand" href="#top" aria-label={`${profile.name} — go to top`}><img class="brand-avatar" src={avatar} alt={`${profile.name} profile photo`} /><span class="brand-name">Darius H.<small>Product designer</small></span></a>
-    <nav class="desktop-nav" aria-label="Main navigation">
-      <a href="#work">Work</a><a href="#approach">Approach</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#writing">Writing</a>
-    </nav>
-    <a class="header-contact" href="#contact">Let’s talk</a>
+    <a class="brand" href="#top" aria-label="Darius H. — back to top">
+      <img class="brand-avatar" src={url(profile.avatar)} alt="Darius H." width="44" height="44" />
+      <span class="brand-name">Darius H.<small>Product designer</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Main navigation"><a href="#work">Work</a><a href="#approach">Approach</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#writing">Writing</a></nav>
+    <a class="header-contact" href="#contact">Get in touch</a>
     <button class="menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu"><span></span><span></span></button>
   </div>
-  <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" hidden>
-    <a href="#work">Work <span>01</span></a><a href="#approach">Approach <span>02</span></a><a href="#about">About <span>03</span></a><a href="#experience">Experience <span>04</span></a><a href="#writing">Writing <span>05</span></a><a href="#contact">Contact</a>
-  </nav>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" hidden><a href="#work">Work</a><a href="#approach">Approach</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#writing">Writing</a><a href="#contact">Contact</a></nav>
 </header>
 <script>
   const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
@@ -23,8 +21,7 @@ const avatar = url(profile.avatar);
     const close = () => { menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Open menu'); };
     toggle.addEventListener('click', () => {
       const next = toggle.getAttribute('aria-expanded') !== 'true';
-      menu.hidden = !next;
-      toggle.setAttribute('aria-expanded', String(next));
+      menu.hidden = !next; toggle.setAttribute('aria-expanded', String(next));
       toggle.setAttribute('aria-label', next ? 'Close menu' : 'Open menu');
     });
     menu.querySelectorAll('a').forEach(link => link.addEventListener('click', close));

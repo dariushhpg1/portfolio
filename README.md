@@ -1,49 +1,55 @@
-# Darius H. — Single-page portfolio
+# Darius H. — Minimal Portfolio
 
-An English, single-page Astro + Tailwind CSS portfolio configured for GitHub Pages, with **Inter** throughout. The main focus is Coin, blubank.design, blu illustrations, and blu icons; Podro appears only in the Experience timeline.
+A single-page English portfolio built with **Astro 7 + Tailwind 4**, intended for GitHub Pages. The visual approach is deliberately minimal: typography, space, understated blue accents, and five visual case studies.
 
-## Replace images without editing code
+## What changed in V7
 
-All replaceable images live in **`public/images/`**. Keep the **exact filename and extension** when replacing a file. Commit/push the replacements to `main` and GitHub Pages redeploys automatically.
+- New personal photo in both the circular navigation avatar and the circular, transparent favicon
+- Removed the decorative hero showcase, decorative About graphic, and career-metric strip
+- Reworked all project cards with much shorter text and a clear visual hierarchy
+- Every project image and article thumbnail is displayed inside a **4:3 landscape frame**
+- The source images are never cropped or edited on disk: **CSS `object-fit: cover`** crops visually where the source aspect ratio differs
+- Reduced site palette to near-white, charcoal, muted grey, and a subdued blue
+- Improved blu Bank pills (circular logo slot, fully rounded corners, even vertical and left padding)
+- Changed IconaMoon's main metric to **135K+ users**, as stated in the October 2026 CV
+- Kept all project links, Medium articles, work experience (including Podro), and contact information
 
-| Filename | Used for | Suggested replacement image |
-| --- | --- | --- |
-| `work-blu.png` | Coin / blu Bank work cover | 1600 × 1050 PNG |
-| `work-blu-illustrations.png` | blu Illustrations work cover | 1600 × 1050 PNG |
-| `work-blu-icons.png` | blu Icons work cover | 1600 × 1050 PNG |
-| `work-iconamoon.png` | IconaMoon work cover | 1600 × 1050 PNG |
-| `work-khooger.png` | Khooger work cover | 1600 × 1050 PNG |
-| `blu-bank-logo.png` | Small image next to blu Bank in the featured work card | Square transparent PNG |
-| `profile-avatar.png` | Circular portrait in top navigation | Square PNG, face centered |
-| `favicon.png` | Circular portrait in browser tab | Square transparent PNG, ideally 180 × 180 |
-| `article-git-cover.png` | Git article thumbnail | PNG cover image |
-| `article-icons-cover.png` | Icon design article thumbnail | PNG cover image |
+## Replace pictures
 
-Work covers use **bare `<img>` elements, with no HTML captions, stickers, or CSS overlays**. The image filenames above are referenced in `src/data/portfolio.ts`, and all internal paths respect GitHub Pages' repository base path.
+All the assets are inside `public/images`. Replacing an image with another image of the same name and extension will automatically update the website after your next GitHub commit.
 
-### Important notes
+| File | Purpose |
+| --- | --- |
+| `profile-avatar.png` | Circle in the site navigation |
+| `favicon.png` | Round browser tab icon, currently derived from your new portrait |
+| `blu-bank-logo.png` | blu Bank logo in the small pill on all three blu projects |
+| `work-blu.png` | Coin and blubank.design cover |
+| `work-blu-illustrations.png` | blu Illustrations cover |
+| `work-blu-icons.png` | blu Icons cover |
+| `work-iconamoon.png` | IconaMoon cover |
+| `work-khooger.png` | Khooger cover |
+| `article-git-cover.png` | Medium article about Git workflow |
+| `article-icons-cover.png` | Medium article about icon delivery |
 
-- **For the header avatar:** replace `profile-avatar.png` with a tightly cropped, centered headshot. CSS clips the image to a circle.
-- **For the browser tab:** replace `favicon.png` if the portrait changes. Browsers may cache favicons; refresh or open a private window to see a new one.
-- **For the blu Bank logo:** `blu-bank-logo.png` is currently an **editable placeholder**, not an official brand asset. Replace it with your preferred original logo.
-- **Khooger case study:** the Work card links directly to your Behance portfolio project.
-- The files under `public/images/` are independent. Replacing any image does not require touching Astro components or CSS.
+**Framing:** project cards and article covers use `aspect-ratio: 4/3; object-fit: cover; object-position: center;`. To show an entire image without cropping, change `object-fit: cover` to `contain` in `src/styles/global.css` (note this will add empty space within some frames).
 
 ## Edit content
 
-Change copy, projects, work experience, article covers, and links in `src/data/portfolio.ts`. The original resume PDF is `public/Darius-H-Resume-2026.pdf`.
+Text, project sequence, URLs, metrics, and work history are in `src/data/portfolio.ts`. Images are referenced there by file path. The site remains **one scrolling page** at `src/pages/index.astro`.
 
-## Publish on GitHub Pages
+The downloadable PDF CV is at `public/Darius-H-Resume-2026.pdf`. The `preview.html` in this ZIP is a self-contained browser preview; GitHub Pages builds the actual site from the files in `src/`.
 
-1. Extract the ZIP. Upload **the files inside it** to the **root** of `dariushhpg1/portfolio` on the `main` branch. Include hidden `.github/workflows/deploy.yml`. Do not upload the ZIP itself or a folder containing all project files.
-2. In **Settings > Pages > Build and deployment**, leave **Source = GitHub Actions**.
-3. Changes trigger `.github/workflows/deploy.yml` automatically. When the workflow is successful, your website is at https://dariushhpg1.github.io/portfolio/.
+## Update the live GitHub Pages website
 
-On subsequent edits, you can upload only the changed files instead of the entire project.
+1. Unzip this file and upload the **contents** to the root of the existing `dariushhpg1/portfolio` repository, on `main`, replacing old files. Include hidden `.github/workflows/deploy.yml`.
+2. Click **Commit changes**. The configured GitHub Actions workflow automatically rebuilds and deploys the site.
+3. Check the deployment status at <https://github.com/dariushhpg1/portfolio/actions>. The site is at <https://dariushhpg1.github.io/portfolio/>.
 
-## Run locally
+Leave **Settings → Pages → Build and deployment → Source** set to **GitHub Actions**.
 
-Node 24+ recommended:
+## Local development
+
+Use Node 24 or newer to match the GitHub Actions workflow:
 
 ```bash
 npm install
@@ -52,13 +58,6 @@ npm run check
 npm run build
 ```
 
-`preview.html` is a standalone static visual reference; the site published by GitHub Actions is built from the source under `src/`. To regenerate the static preview after **content** changes, run `python scripts/generate_preview.py` (requires Python, `jinja2`, `json5`).
+A standalone preview can be regenerated with `python3 scripts/generate_preview.py` (`jinja2` and `json5` packages required). Inter loads from Google Fonts with system-font fallback.
 
-Inter loads via Google Fonts when online, with system-font fallback if that service is blocked.
-
-## Version 5 updates
-
-- Replaced Khooger and IconaMoon covers with the latest supplied files, without changing paths.
-- Replaced `public/images/blu-bank-logo.png` with the supplied blu Bank logo (shown alongside all blu projects).
-- Linked the Khooger work card to its Behance case study.
-- Updated all Work links to high-contrast, pill-shaped buttons with hover and keyboard focus styling.
+**Build note:** Visual QA was performed with the browser preview at desktop and mobile sizes. The Astro `npm run build` requires installation of dependencies and could not be completed in the current offline authoring environment; the GitHub Actions workflow performs that build on commit.
